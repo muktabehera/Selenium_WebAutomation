@@ -13,11 +13,12 @@ portalurl = "https://www.credify.tech/portal/login"
 
 def VerifyLoanOffer():
 
-    #Step1:
+    #Step1: Navigate to https://www.credify.tech/phone/nonDMFunnel
     driver.get(url)
     driver.maximize_window()
 
-    #Step2:
+    #Step2: a. Enter loan amount as 2,000 and select any purpose
+    #b. Click "Check your Rate"
     element_LoanAmount= driver.find_element_by_name("desiredAmount")
     element_LoanAmount.click()
     element_LoanAmount.send_keys(2000)
@@ -26,7 +27,7 @@ def VerifyLoanOffer():
     element_button= driver.find_element_by_xpath("//*[@id='root']/div/main/div/div/div/div/div[2]/div[2]/form/div/div/div[3]/button")
     element_button.submit()
 
-    #Step3:
+    #Step3: Enter basic info in the page.
     firstname= driver.find_element_by_name("borrowerFirstName")
     firstname.send_keys("Tom")
     lastname = driver.find_element_by_name("borrowerLastName")
@@ -58,7 +59,8 @@ def VerifyLoanOffer():
     checkRate_button= driver.find_element_by_xpath("//*[@id='root']/div/main/div/div[1]/div[2]/div[1]/div/div/form/div[2]/div/label/div[1]")
     checkRate_button.submit()
 
-    #Step4:
+    #Step4: From the /offer-page, store the Loan Amount, Monthly Payment, Term, Interest Rate and APR from the default offer on top of the page.
+    #a. Click on "Sign Out" from the Menu option in the top right corner
     driver.implicitly_wait(5)
     LoanAmount =  driver.find_element_by_xpath("//*[@id='root']/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[1]/div[2]/span[2]")
     MonthlyPayment = driver.find_element_by_xpath("//*[@id='root']/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[3]/div/div/div/div[1]/div/div/span").text
@@ -77,7 +79,9 @@ def VerifyLoanOffer():
     signout.click()
     #driver.close()
 
-    #Step5:
+    #Step5: Now navigate to https://www.credify.tech/portal/login
+    # a. Enter the previously entered email and password
+    # b. Click "Sign In to your account"
     driver.get(portalurl)
     portal_login = driver.find_element_by_name("username")
     portal_login.send_keys("hello123@upgrade-challnge.com")
@@ -87,8 +91,9 @@ def VerifyLoanOffer():
     signIn.submit()
     driver.implicitly_wait(5)
 
-    #Step6:
-    #offerpage_url = driver.getCurrentUrl()
+    #Step6: Make sure you are on /offer-page
+    # a. Validate that Loan Amount, APR, Loan Term and Monthly Payment matches with the info stored
+    # previously
     header = driver.find_element_by_xpath("//*[@id='root']/div/main/div/div[1]/div/h2")
     pageHeader = header.text
     amount= driver.find_element_by_xpath("//*[@id='root']/div/main/div/div[2]/div[1]/div/div[1]/div[1]/div[1]/div[2]/span[2]").text
