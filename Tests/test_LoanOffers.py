@@ -120,8 +120,8 @@ class TestLoanOffer():
 
 
 
-a = TestLoanOffer()
-a.test_VerifyLoanOffer()
+# a = TestLoanOffer()
+# a.test_VerifyLoanOffer()
 
 
 
