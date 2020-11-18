@@ -2,6 +2,7 @@
 # Input URL: https://www.credify.tech/phone/nonDMFunnel
 # Input URL: https://www.credify.tech/portal/login
 
+import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -11,7 +12,7 @@ driver = webdriver.Chrome(ChromeDriverManager().install())
 url = "https://www.credify.tech/phone/nonDMFunnel"
 portalurl = "https://www.credify.tech/portal/login"
 
-def VerifyLoanOffer():
+def test_VerifyLoanOffer():
 
     #Step1: Navigate to https://www.credify.tech/phone/nonDMFunnel
     driver.get(url)
